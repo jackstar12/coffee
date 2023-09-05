@@ -101,30 +101,12 @@ impl PluginLang {
                     sh!(path, script, verbose);
                     Ok(format!("{path}/{name}.py"))
                 }
-                PluginLang::Go => Err(error!(
-                    "golang is not supported as default language, please us the coffee.yml manifest"
+                PluginLang::Unknown => Err(error!(
+                    "unknown default install procedure, the language in undefined"
                 )),
-                PluginLang::Rust => Err(error!(
-                    "rust is not supported as default language, please use the coffee.yml manifest"
+                lang => Err(error!(
+                    "{lang} is not supported as default language, please us the coffee.yml manifest"
                 )),
-                PluginLang::Dart => Err(error!(
-                    "dart is not supported as default language, please use the cofee.yml manifest"
-                )),
-                PluginLang::JavaScript => Err(error!(
-                    "js is not supported as default language, please use the coffee.yml manifest"
-                )),
-                PluginLang::TypeScript => Err(error!(
-                    "ts is not supported as default language, please use the coffee.yml manifest"
-                )),
-                PluginLang::JVM => Err(error!(
-                    "JVM is not supported as default language, please use the coffee.yml manifest"
-                )),
-                PluginLang::Unknown => {
-                    /* 1. emit an error message  */
-                    Err(error!(
-                        "unknown default install procedure, the language in undefined"
-                    ))
-                }
             },
         }
     }
